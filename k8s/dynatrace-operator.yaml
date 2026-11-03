@@ -7,6 +7,8 @@ kind: PodDisruptionBudget
 metadata:
   name: dynatrace-webhook
   namespace: dynatrace
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "1.11.1"
