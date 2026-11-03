@@ -1,0 +1,15 @@
+apiVersion: dynatrace.com/v1beta1
+kind: DynaKube
+metadata:
+  name: dynakube
+  namespace: dynatrace
+spec:
+  # Replace with your actual Dynatrace SaaS or Managed URL
+  apiUrl: https://YOUR_ENVIRONMENT_ID.dynatrace.com
+  
+  # References the secret containing the API token you generated
+  tokens: dynakube
+  
+  # Enables full-stack monitoring (OneAgent deployed as a DaemonSet)
+  oneAgent:
+    cloudNativeFullStack: {}
