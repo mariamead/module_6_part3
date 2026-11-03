@@ -30,9 +30,9 @@ data:
       server {
         listen 80;
 
-        # Backend APIs
+        # Banking backend routes accessed through the legacy UI prefix
         location /api/backend/ {
-          proxy_pass http://backend/;
+          proxy_pass http://backend/api/;
           proxy_http_version 1.1;
           proxy_set_header Host $host;
           proxy_set_header X-Real-IP $remote_addr;
@@ -40,9 +40,9 @@ data:
           proxy_set_header X-Forwarded-Proto $scheme;
         }
 
-        # Transaction API direct (if called by UI)
-        location = /api/transactions {
-          proxy_pass http://backend/api/transactions;
+        # Banking UI and API routes
+        location /api/ {
+          proxy_pass http://backend;
           proxy_http_version 1.1;
           proxy_set_header Host $host;
           proxy_set_header X-Real-IP $remote_addr;
@@ -52,7 +52,7 @@ data:
 
         # Transaction service (raw)
         location /api/transactions-service/ {
-          proxy_pass http://transactions/;
+          proxy_pass http://transactions/api/transactions/;
           proxy_http_version 1.1;
           proxy_set_header Host $host;
           proxy_set_header X-Real-IP $remote_addr;
