@@ -1,4 +1,4 @@
-apiVersion: dynatrace.com/v1beta1
+apiVersion: dynatrace.com/v1beta6
 kind: DynaKube
 metadata:
   name: dynakube
@@ -7,11 +7,24 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   # Replace with your actual Dynatrace SaaS or Managed URL
-  apiUrl: https://YOUR_ENVIRONMENT_ID.dynatrace.com/api
+  apiUrl: https://pdt20158.live.dynatrace.com/api
   
   # References the secret containing the API token you generated
   tokens: dynakube
+  # Explicitly name your cluster in the Dynatrace UI
+  clusterName: minikube-test-cluster
   
   # Enables full-stack monitoring (OneAgent deployed as a DaemonSet)
   oneAgent:
     cloudNativeFullStack: {}
+  activeGate:
+    capabilities:
+      - routing
+      - kubernetes-monitoring
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1.5Gi
