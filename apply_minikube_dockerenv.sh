@@ -2,9 +2,17 @@
 set -euo pipefail
 
 minikube start --driver=docker
+
+#  ADDED FOR APPROACH 2: Enable the native ingress addon automatically
+#minikube addons enable ingress
 minikube status
 
-chmod +x apply_minikube_dockerenv.sh
+# You cannot run chmod +x inside the script on itself to make it 
+# executable. You must run that command once in your regular terminal 
+# before you run the script for the first time.
+#chmod +x apply_minikube_dockerenv.sh
+
+
 # Force builds into Minikube's Docker daemon (Docker driver)
 eval "$(minikube -p minikube docker-env)"
 
@@ -29,3 +37,5 @@ echo
 echo "Open the app:"
 echo "  minikube service nginx"
 echo "or http://$(minikube ip):30080"
+#  OR UPDATED FOR APPROACH 2: No more port 30080 needed!
+#echo "  http://$(minikube ip)/" 

@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   # Replace with your actual Dynatrace SaaS or Managed URL
-  apiUrl: https://YOUR_ENVIRONMENT_ID.dynatrace.com
+  apiUrl: https://YOUR_ENVIRONMENT_ID.dynatrace.com/api
   
   # References the secret containing the API token you generated
   tokens: dynakube
